@@ -10,6 +10,7 @@ import Reports from '../reportsPage/reports';
 import Contact from '../contactPage/contact';
 import DonateNow from '../donationsPage/donateNow';
 import Footer from '../../components/footer';
+import EventsDetailsPage from '../eventsPage/eventDetails';
 
 const MainPages: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const MainPages: React.FC = () => {
         <Route path="/reports" element={<Reports />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/donate-now" element={<DonateNow />} />
+        <Route path="/event/:id" element={<EventsDetailsPage />} />
       </Routes>
       <Footer />
     </div>
