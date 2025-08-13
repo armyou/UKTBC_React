@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from '../assets/uktbcLogo.png';
-import { Button } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { IoMdPerson } from "react-icons/io";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -54,6 +55,11 @@ const Header: React.FC = () => {
       >
         Donate Now
       </Button>
+      <div className="login" onClick={() => navigate("/login")}>
+        <Tooltip title="Admin Login" >
+          <IoMdPerson />
+        </Tooltip>
+      </div>
     </div>
   );
 };
