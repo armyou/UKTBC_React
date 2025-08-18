@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/uktbcLogo.png';
+import logo from '../../assets/uktbcLogo.png';
 import { Button, Tooltip } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IoMdPerson } from "react-icons/io";

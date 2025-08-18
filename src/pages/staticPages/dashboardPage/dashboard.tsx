@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Carousel, Button } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import slide1 from "../../assets/dashboard/slide1.png";
-import slide2 from "../../assets/dashboard/slide2.png";
-import { getHomescreendata } from '../../api_calls/dashboardApi';
+import slide1 from "../../../assets/dashboard/slide1.png";
+import slide2 from "../../../assets/dashboard/slide2.png";
+import { getHomescreendata } from '../../../api_calls/dashboardApi';
 import { useNavigate } from 'react-router-dom';
 
 interface Event {

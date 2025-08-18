@@ -1,13 +1,18 @@
 import React from 'react';
-import { Form, Input, Button, Card, Typography } from 'antd';
+import { Form, Input, Button, Card, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import logo from "../../assets/uktbcLogo.png";
+import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
 const Login: React.FC = () => {
+  const navigate = useNavigate()
+;
   const onFinish = (values: { username: string; password: string }) => {
     console.log('Login values:', values);
+    message.success("login successful!");
+    navigate('/admin')
   };
 
   return (
