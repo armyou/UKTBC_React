@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getHomescreendata } from '../../api_calls/dashboardApi';
+import { getHomescreendata } from '../../../api_calls/dashboardApi';
 import { useEffect, useState } from 'react';
 
 interface Event {

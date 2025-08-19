@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Radio, Checkbox, InputNumber, Card, Typography, Row, Col } from 'antd';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { donateNow } from '../../../api_calls/donationsApi';
 
 const { Title } = Typography;
 
@@ -10,14 +11,20 @@ const DonateNow: React.FC = () => {
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     // if (!captchaValue) {
     //   alert('Please complete the captcha verification');
     //   return;
     // }
-    console.log('Donation details:', { ...values, captcha: captchaValue });
-    form.resetFields();
-    setCaptchaValue(null);
+    if(values.ClaimGiftAid == 'Yes'){
+      values.ClaimGiftAid = true
+    } else {
+      values.ClaimGiftAid = false;
+    }
+    console.log(captchaValue);
+    const response = await donateNow(values);
+
+    console.log('Donation details:', { response });
   };
 
   return (
@@ -91,7 +98,7 @@ const DonateNow: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="giftAid"
+            name="ClaimGiftAid"
             label="Please claim Gift Aid on my donation"
             rules={[{ required: true }]}
           >
@@ -101,7 +108,7 @@ const DonateNow: React.FC = () => {
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item name="personalMoney" valuePropName="checked">
+          <Form.Item name="isThisPersonalMoney" valuePropName="checked">
             <Checkbox>This donation is my personal money</Checkbox>
           </Form.Item>
 

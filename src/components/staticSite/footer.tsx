@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/uktbcLogo.png';
+import logo from '../../assets/uktbcLogo.png';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { FaLinkedin, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
