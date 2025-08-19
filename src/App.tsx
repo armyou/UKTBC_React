@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import Login from './pages/startingPages/login';
 import Register from './pages/startingPages/register';
 import MainPages from './pages/startingPages/mainPages';
+import AdminLayout from './pages/startingPages/adminLayout';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin/*" element={<AdminLayout />} />
           <Route path="/*" element={<MainPages />} />
         </Routes>
       </Router>
