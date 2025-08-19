@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 interface AdminHeaderProps {
   toggleNav: () => void;
@@ -8,6 +9,13 @@ interface AdminHeaderProps {
 const AdminHeader: React.FC<AdminHeaderProps> = ({
   toggleNav
 }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    navigate("/login")
+  }
+
   return (
     <div className="admin-header col-sm-12">
       {/* Left: Hamburger Menu */}
@@ -17,7 +25,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
       </div>
 
       {/* Right: Logout Button */}
-      <button className="logout-btn">Logout</button>
+      <button className="logout-btn" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

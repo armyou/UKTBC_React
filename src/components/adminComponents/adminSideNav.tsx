@@ -34,7 +34,7 @@ const AdminSideNav: React.FC<AdminSideNavProps> = (
           to="/admin"
           end
           className={({ isActive }) =>
-            isActive ? 'nav-item active' : 'nav-item'
+            isActive ? 'admin-nav-item active' : 'admin-nav-item'
           }
         >
           <MdDashboard className="nav-icon" />
@@ -44,7 +44,7 @@ const AdminSideNav: React.FC<AdminSideNavProps> = (
         <NavLink
           to="/admin/donations"
           className={({ isActive }) =>
-            isActive ? 'nav-item active' : 'nav-item'
+            isActive ? 'admin-nav-item active' : 'admin-nav-item'
           }
         >
           <FaDonate className="nav-icon" />
