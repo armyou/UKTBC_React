@@ -1,64 +1,18 @@
 import React from 'react';
 import logo from '../../assets/uktbcLogo.png';
-import { Button, Tooltip } from 'antd';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { IoMdPerson } from "react-icons/io";
 
 const Header: React.FC = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="header col-sm-12">
-      <img src={logo} alt="UKTBC Logo" className="col-sm-1 logo" />
-      <ul className="nav-list">
-        <li>
-          <NavLink className="nav-item" to="/">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/about">
-            About Us
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/services">
-            Services
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/events">
-            Events
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/projects">
-            Projects
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/reports">
-            Reports
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-item" to="/contact-us">
-            Contacts
-          </NavLink>
-        </li>
-      </ul>
-      <Button
-        type="primary"
-        shape="round"
-        className="cta"
-        onClick={() => navigate('/donate-now')}
-      >
-        Donate Now
-      </Button>
-      <div className="login" onClick={() => navigate("/login")}>
-        <Tooltip title="Admin Login" >
-          <IoMdPerson />
-        </Tooltip>
+      <div className="header-row-1 col-sm-12">
+        <div className="header-brand col-sm-8">
+          <img src={logo} alt="UKTBC Logo" className="col-sm-1 logo" />
+          <div className="brand-title">
+            <p className="h3">UK Telugu Brahmin Community</p>
+            <p className="h4">{"Registered Charity (No: 1205566)"}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

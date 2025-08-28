@@ -3,17 +3,21 @@ import logo from '../../assets/uktbcLogo.png';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { FaLinkedin, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
+import  "./css/footer.css"
 
 const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="footer col-sm-12">
-        <div className="brand col-sm-3">
-          <img src={logo} alt="UKTBC Logo" className="logo" />
-          <p className="brand-name">UK Telugu Brahmin Community</p>
-          <Button
+    <div className="footer_container col-md-12">
+      <div className="footer col-md-10">
+        <div className="brand ">
+          <div className='footer_image'>
+          <img src={logo} alt="UKTBC Logo" className="logo" style={{width:"171px"}}/>
+          </div>
+          <div className='footer_btn'>
+            <Button
             type="primary"
             shape="round"
             className="cta col-sm-8"
@@ -21,10 +25,12 @@ const Footer: React.FC = () => {
           >
             Donate Now
           </Button>
+          </div>
+          
         </div>
 
-        <div className="quick-links col-sm-3">
-          <p className="sub-heading">Quick Links</p>
+        <div className="quick-links ">
+          <h2 className="sub-heading">Quick Links</h2>
           <div className="footer-links">
             <p className="paragraph" onClick={() => navigate('/')}>Home</p>
             <p className="paragraph" onClick={() => navigate('/about')}>About Us</p>
@@ -35,8 +41,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="quick-links col-sm-3">
-          <p className="sub-heading">Company Policies</p>
+        <div className="quick-links ">
+          <h2 className="sub-heading">Company Policies</h2>
           <div className="footer-links">
             <p className="paragraph" onClick={() => navigate('/')}>Terms & Conditions</p>
             <p className="paragraph" onClick={() => navigate('/about')}>Privacy Policies</p>
@@ -44,8 +50,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="quick-links col-sm-3">
-          <p className="sub-heading">Social Media</p>
+        <div className="quick-links ">
+          <h2 className="sub-heading">Social Media</h2>
           <div className="footer-links">
             <a
               href="https://www.linkedin.com"
@@ -81,6 +87,19 @@ const Footer: React.FC = () => {
             </a>
           </div>
         </div>
+      </div>
+      <hr/>
+      <div className="footer_base col-md-12">
+        <div className="copy_right">
+          <h5>2025 UKTBC. All Rights Reserved.</h5>
+        </div>
+        <div className="visitors">
+          <h5>UKTBC Website Visitors <p>34898</p></h5>
+        </div>
+        <div className="charity">
+          <h5>Charity registered in England and Wales (No. 1205566)</h5>
+        </div>
+      </div>
       </div>
     </>
   );
