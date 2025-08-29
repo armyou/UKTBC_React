@@ -1,33 +1,36 @@
 :root {
-  --backgrounds---color-bg: #fafafa;	
-  --backgrounds---color-bg-dark: #1b1b1b;	
-  --backgrounds---color-surface: #fff;	
-  --backgrounds---color-border: #e0e0e0;	
-  --text---color-text-primary: #212121;	
-  --text---color-text-secondary: #616161;	
-  --text---color-text-light: #fafafa;	
-  --text---color-text-muted: #9e9e9e;	
-  --primary-brand---color-primary: #e65100;	
-  --primary-brand---color-primary-light: #ff9800;	
-  --primary-brand---color-primary: #bf360c;	
-  --secondary---color-secondary: #b71c1c;	
-  --secondary---color-secondary-light: #e53935;	
-  --secondary---color-secondary-dark: #7f0000;	
-  --accent-color---color-accent-purple: #6a1b9a;	
-  --accent-color---color-accent-yellow: #fbc02d;	
-  --accent-color---color-accent-green: #2e7d32;	
-  --accent-color---color-accent-blue: #1565c0;	
-  --utility---color-success: #43a047;	
-  --utility---color-warning: #ffa000;	
-  --utility---color-error: #d32f2f;	
-  --utility---color-info: #0288d1;	
-  --neutrals---color-white: #fff;	
+  --backgrounds---color-bg: #fafafa;
+  --backgrounds---color-bg-dark: #1b1b1b;
+  --backgrounds---color-surface: #fff;
+  --backgrounds---color-border: #e0e0e0;
+  --text---color-text-primary: #212121;
+  --text---color-text-secondary: #616161;
+  --text---color-text-light: #fafafa;
+  --text---color-text-muted: #9e9e9e;
+  --primary-brand---color-primary: #e65100;
+  --primary-brand---color-primary-light: #ff9800;
+  --primary-brand---color-primary-dark: #bf360c;
+  --secondary---color-secondary: #b71c1c;
+  --secondary---color-secondary-light: #e53935;
+  --secondary---color-secondary-dark: #7f0000;
+  --accent-color---color-accent-purple: #6a1b9a;
+  --accent-color---color-accent-yellow: #fbc02d;
+  --accent-color---color-accent-green: #2e7d32;
+  --accent-color---color-accent-blue: #1565c0;
+  --utility---color-success: #43a047;
+  --utility---color-warning: #ffa000;
+  --utility---color-error: #d32f2f;
+  --utility---color-info: #0288d1;
+  --neutrals---color-white: #fff;
   --neutrals---color-black: #000;
 }
 
-.app{
+.app {
   font-family: "Poppins", sans-serif;
   padding: 0;
   margin: 0;
+  width: 100vw;
 }
-
+.vertical_spacer {
+  height: 10vh;
+}
