@@ -49,7 +49,7 @@ const Header: React.FC = () => {
                 Donate Now
               </Button>
             </div>
-            <div className="header_icon">
+            <div className="header_icon" onClick={() => navigate("/login")}>
               <Icon icon="lucide:user-lock" width="35" height="35" />
             </div>
           </div>

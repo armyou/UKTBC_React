@@ -1,0 +1,75 @@
+.admin-sidebar {
+  height: 100%;
+  background-color: var(--backgrounds---color-surface);
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 1vw;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-prifile-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  font-size: 4vw;
+  color: var(--primary-brand---color-primary);
+}
+
+.profile-name {
+  margin-left: 1vw;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text---color-text-primary);
+}
+
+.view-profile {
+  margin-left: 1vw;
+  font-size: 0.9rem;
+  color: var(--primary-brand---color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.admin-nav-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vh;
+  gap: 1vh;
+  width: 100%;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+  font-size: 1rem;
+  padding: 0.8vh 1vw;
+  border-radius: 4px;
+  color: var(--text---color-text-secondary);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.nav-icon {
+  font-size: 1.5vw;
+  /* color: var(--primary-brand---color-primary); */
+}
+
+.admin-nav-item:hover {
+  background-color: var(--backgrounds---color-bg);
+  color: var(--primary-brand---color-primary);
+}
+
+.admin-nav-item.active {
+  background-color: var(--primary-brand---color-primary);
+  color: var(--neutrals---color-white);
+}

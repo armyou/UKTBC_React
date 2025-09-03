@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Row, Col, Table, Tag, Button, Modal, Descriptions } from "antd";
+import "./css/dashboard.css";
 
 // Extend DonateData for admin dashboard records
 interface DonateData {
@@ -29,7 +30,9 @@ interface DonateData {
 }
 
 const AdminDashboard: React.FC = () => {
-  const [selectedDonation, setSelectedDonation] = useState<DonateData | null>(null);
+  const [selectedDonation, setSelectedDonation] = useState<DonateData | null>(
+    null
+  );
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   // Recent donations data
@@ -144,21 +147,39 @@ const AdminDashboard: React.FC = () => {
       <Row gutter={16}>
         <Col xs={24} sm={12} md={8}>
           <Card title="Total Donations" bordered={false}>
-            <p style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#AE2C36" }}>
+            <p
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                color: "#AE2C36",
+              }}
+            >
               ₹25,430
             </p>
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8}>
           <Card title="Total Donors" bordered={false}>
-            <p style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#AE2C36" }}>
+            <p
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                color: "#AE2C36",
+              }}
+            >
               320
             </p>
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8}>
           <Card title="This Month" bordered={false}>
-            <p style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#AE2C36" }}>
+            <p
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                color: "#AE2C36",
+              }}
+            >
               ₹5,120
             </p>
           </Card>
