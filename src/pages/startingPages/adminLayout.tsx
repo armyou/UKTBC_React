@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminSideNav from "../../components/adminComponents/adminSideNav";
 import AdminHeader from "../../components/adminComponents/adminHeader";
 import { Route, Routes } from "react-router-dom";
@@ -6,26 +6,51 @@ import AdminDashboard from "../adminPages/adminDashboard";
 import AdminDonations from "../adminPages/adminDonations";
 import ProtectedRoute from "../../components/adminComponents/adminProtectedRoutes";
 import "./css/adminLayout.css";
+import AdminEvents from "../adminPages/adminEvents";
+import AdminProjects from "../adminPages/adminProjects";
 
 const AdminLayout: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  // track window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth <= 768; // breakpoint for mobile
+
   return (
     <div className="admin-layout col-sm-12">
+      {/* Sidebar */}
       <div
         className={
-          isNavOpen ? "admin-sideNav col-sm-2" : "admin-sideNav col-sm-1"
+          isMobile
+            ? isNavOpen
+              ? "admin-sideNav col-1" // mobile open
+              : "d-none" // mobile closed = hide
+            : isNavOpen
+            ? "admin-sideNav col-sm-2" // desktop open
+            : "admin-sideNav col-sm-1" // desktop closed
         }
       >
         <AdminSideNav isSideNavOpen={isNavOpen} />
       </div>
+
+      {/* Main Content */}
       <div
         className={
-          isNavOpen
+          isMobile && isNavOpen
+            ? "admin-full-content col-11"
+            : isMobile && !isNavOpen
+            ? "admin-full-content col-12"
+            : isNavOpen
             ? "admin-full-content col-sm-10"
             : "admin-full-content col-sm-11"
         }
@@ -45,6 +70,22 @@ const AdminLayout: React.FC = () => {
             element={
               <ProtectedRoute>
                 <AdminDonations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <ProtectedRoute>
+                <AdminEvents />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <ProtectedRoute>
+                <AdminProjects />
               </ProtectedRoute>
             }
           />

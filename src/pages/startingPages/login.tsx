@@ -29,7 +29,7 @@ const Login: React.FC = () => {
             name="login"
             onFinish={onFinish}
             layout="vertical"
-            className="login-form col-sm-12 col-md-5"
+            className="login-form col-sm-12 col-md-7"
           >
             <p className="form-note">
               Please enter your email and password to login

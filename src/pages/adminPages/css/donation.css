@@ -1,0 +1,25 @@
+.admin-main {
+  width: 100%;
+  height: 90vh;
+  overflow-y: auto;
+  /* overflow-x: hidden; */
+  padding: 3vh 3vw 0vh 3vw;
+}
+
+.dashboard-heading {
+  font-size: 2vw;
+  font-weight: 600;
+  margin-bottom: 2vh;
+}
+
+.search {
+  width: 100%;
+  margin-bottom: 2vh;
+}
+
+.search-bar {
+  width: 100%;
+  font-size: 1.2vw;
+  border-radius: 0.5vw;
+  /* border: 1px solid var(--primary-brand---color-primary); */
+}

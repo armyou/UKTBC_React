@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Card, Row, Col, Table, Tag, Button, Modal, Descriptions } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Table,
+  Tag,
+  Button,
+  Modal,
+  Descriptions,
+  Grid,
+} from "antd";
+import { FaDownload, FaEye } from "react-icons/fa";
 import "./css/dashboard.css";
 
 // Extend DonateData for admin dashboard records
@@ -29,11 +40,15 @@ interface DonateData {
   status: "Completed" | "Pending" | "Failed";
 }
 
+const { useBreakpoint } = Grid;
+
 const AdminDashboard: React.FC = () => {
   const [selectedDonation, setSelectedDonation] = useState<DonateData | null>(
     null
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const screens = useBreakpoint();
 
   // Recent donations data
   const donations: DonateData[] = [
@@ -91,7 +106,7 @@ const AdminDashboard: React.FC = () => {
       title: "Amount",
       dataIndex: "donationAmount",
       key: "donationAmount",
-      render: (amount: number) => `₹${amount.toLocaleString()}`,
+      render: (amount: number) => `£${amount.toLocaleString()}`,
     },
     {
       title: "Date",
@@ -115,27 +130,29 @@ const AdminDashboard: React.FC = () => {
     {
       title: "Actions",
       key: "actions",
+      width: "2vw",
       render: (_: unknown, record: DonateData) => (
-        <>
+        <div className="actions">
           <Button
-            type="link"
+            className="action-button"
+            type="text"
+            size="small"
+            icon={<FaEye />}
             onClick={() => {
               setSelectedDonation(record);
               setIsModalVisible(true);
             }}
-          >
-            View
-          </Button>
+          />
           <Button
-            type="link"
+            className="action-button"
+            type="text"
+            size="small"
+            icon={<FaDownload />}
             onClick={() => {
-              // Placeholder for download logic (e.g. PDF export / API call)
               console.log("Download donation:", record);
             }}
-          >
-            Download
-          </Button>
-        </>
+          />
+        </div>
       ),
     },
   ];
@@ -146,56 +163,98 @@ const AdminDashboard: React.FC = () => {
       <h3 className="dashboard-heading">Donation Overview</h3>
       <Row gutter={16}>
         <Col xs={24} sm={12} md={8}>
-          <Card title="Total Donations" bordered={false}>
-            <p
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                color: "#AE2C36",
-              }}
-            >
-              ₹25,430
-            </p>
+          <Card
+            title="Total Donations"
+            bordered={false}
+            className="dashboard-card"
+          >
+            <p className="card-content">₹25,430</p>
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8}>
-          <Card title="Total Donors" bordered={false}>
-            <p
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                color: "#AE2C36",
-              }}
-            >
-              320
-            </p>
+          <Card
+            title="Total Donors"
+            bordered={false}
+            className="dashboard-card"
+          >
+            <p className="card-content">320</p>
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8}>
-          <Card title="This Month" bordered={false}>
-            <p
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                color: "#AE2C36",
-              }}
-            >
-              ₹5,120
-            </p>
+          <Card title="This Month" bordered={false} className="dashboard-card">
+            <p className="card-content">₹5,120</p>
           </Card>
         </Col>
       </Row>
 
-      {/* Recent Donations Table */}
+      {/* Recent Donations Table or Card view */}
       <h3 className="dashboard-heading" style={{ marginTop: "2rem" }}>
         Recent Donations
       </h3>
-      <Table
-        columns={columns}
-        dataSource={donations}
-        pagination={false}
-        bordered
-      />
+
+      {screens.xs ? (
+        // 👉 Mobile Card Layout
+        <Row gutter={[16, 16]}>
+          {donations.map((d) => (
+            <Col xs={24} key={d.key}>
+              <Card
+                title={`${d.firstName} ${d.lastName}`}
+                extra={
+                  <Tag
+                    color={
+                      d.status === "Completed"
+                        ? "green"
+                        : d.status === "Pending"
+                        ? "orange"
+                        : "red"
+                    }
+                  >
+                    {d.status}
+                  </Tag>
+                }
+                actions={[
+                  <FaEye
+                    className="action-button"
+                    key="view"
+                    onClick={() => {
+                      setSelectedDonation(d);
+                      setIsModalVisible(true);
+                    }}
+                  />,
+                  <FaDownload
+                    className="action-button"
+                    key="download"
+                    onClick={() => {
+                      console.log("Download donation:", d);
+                    }}
+                  />,
+                ]}
+              >
+                <p>
+                  <strong>Amount:</strong> £{d.donationAmount.toLocaleString()}
+                </p>
+                <p>
+                  <strong>Date:</strong> {d.date}
+                </p>
+                <p>
+                  <strong>Email:</strong> {d.email}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {d.phone}
+                </p>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        // 👉 Desktop Table Layout
+        <Table
+          columns={columns}
+          dataSource={donations}
+          pagination={false}
+          bordered
+        />
+      )}
 
       {/* Modal for viewing donation details */}
       <Modal
@@ -216,7 +275,7 @@ const AdminDashboard: React.FC = () => {
               {selectedDonation.phone}
             </Descriptions.Item>
             <Descriptions.Item label="Donation Amount">
-              ₹{selectedDonation.donationAmount.toLocaleString()}
+              £{selectedDonation.donationAmount.toLocaleString()}
             </Descriptions.Item>
             <Descriptions.Item label="Gift Aid">
               {selectedDonation.ClaimGiftAid ? "Yes" : "No"}

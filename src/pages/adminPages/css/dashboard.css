@@ -2,5 +2,66 @@
   width: 100%;
   height: 90vh;
   overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  padding: 3vh 3vw 0vh 3vw;
+}
+
+.dashboard-heading {
+  font-size: 2vw;
+  font-weight: 600;
+  margin-bottom: 2vh;
+  color: var(--primary-brand---color-primary);
+}
+
+.dashboard-card {
+  background-color: var(--backgrounds---color-surface);
+}
+
+.ant-card-head-title {
+  font-size: 1.5vw !important;
+  font-weight: lighter !important;
+  color: var(--text---color-text-muted);
+}
+
+.card-content {
+  font-size: 3vw;
+  font-weight: bold;
+  color: var(--secondary---color-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: 2vw;
+}
+
+.action-button {
+  font-size: 1.6vw;
+  color: var(--secondary---color-secondary);
+}
+
+.action-button:hover {
+  color: var(--secondary---color-secondary-light) !important;
+}
+
+.action-button:active {
+  color: var(--secondary---color-secondary-dark) !important;
+}
+
+/* mobile responsive */
+@media (max-width: 768px) {
+  .dashboard-heading {
+    font-size: 5vw !important;
+  }
+  .dashboard-card {
+    margin-bottom: 2vh;
+  }
+  .ant-card-head-title {
+    font-size: 4vw !important;
+  }
+  .card-content {
+    font-size: 5vw !important;
+  }
+  .action-button {
+    font-size: 5vw;
+  }
 }
