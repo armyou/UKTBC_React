@@ -44,6 +44,15 @@
   margin-bottom: 0;
 }
 
+.ant-form-item-vertical {
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+}
+
+.add-button {
+  margin-bottom: 3vh;
+}
+
 /* mobile responsive */
 @media (max-width: 768px) {
   .project-card {

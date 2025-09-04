@@ -49,6 +49,41 @@
   margin-right: 1vw;
 }
 
+.eventForm input,
+.eventForm textarea,
+.eventForm .ant-picker {
+  border: 1px solid var(--text---color-text-muted);
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.eventForm h4 {
+  color: var(--text---color-text-primary);
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
+.eventForm .form-submit {
+  background-color: var(--primary-brand---color-primary);
+  border: none;
+  margin-top: 2.5vh;
+  color: var(--neutrals---color-white);
+  font-size: 1.2vw;
+  padding: 0.75rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.eventForm .form-submit:hover {
+  background-color: var(--primary-brand---color-primary-light) !important;
+}
+
+.eventForm .form-submit:active {
+  background-color: var(--primary-brand---color-primary-dark) !important;
+}
+
 /* mobile responsive */
 @media (max-width: 768px) {
   .event-card {
