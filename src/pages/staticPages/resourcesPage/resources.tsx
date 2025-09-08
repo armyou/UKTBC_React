@@ -21,9 +21,12 @@ const Resources = () => {
         </div>
       </div>
       <div className="resources-container col-md-12">
+        <div className="vertical_spacer_small"></div>
         <div className="resources-title">
           <p className="h2">Panchangam</p>
         </div>
+        <div className="vertical_spacer_small"></div>
+
         <div className="panchangam-cards-resources col-md-12">
           <div className="panchangam-card-resources col-md-4">
             <div className="panchangam-img-container">
@@ -91,6 +94,8 @@ const Resources = () => {
           <div className="reports-publications-title">
             <p className="h2">Reports & Publications</p>
           </div>
+          <div className="vertical_spacer_small"></div>
+
           <div className="reports-publications-cards col-md-12">
             <div className="reports-publications-card col-md-4">
               <div className="reports-publications-header">

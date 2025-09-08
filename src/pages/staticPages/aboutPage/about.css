@@ -40,6 +40,11 @@
   box-shadow: 0 53px 15px 0 rgba(0, 0, 0, 0), 0 34px 14px 0 rgba(0, 0, 0, 0.01),
     0 19px 12px 0 rgba(0, 0, 0, 0.05), 0 9px 9px 0 rgba(0, 0, 0, 0.09),
     0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 /* guidance section */
 .guidance_image {
@@ -58,12 +63,17 @@
   justify-content: space-around;
   padding: 10px;
   width: 20vw;
-  height: 32vh;
+  height: 45vh;
   border-radius: 16px;
   background-color: var(--neutrals---color-white);
   box-shadow: 0 53px 15px 0 rgba(0, 0, 0, 0), 0 34px 14px 0 rgba(0, 0, 0, 0.01),
     0 19px 12px 0 rgba(0, 0, 0, 0.05), 0 9px 9px 0 rgba(0, 0, 0, 0.09),
     0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.governance_ethics_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 .governance_ethics_cards {
   display: flex;

@@ -133,6 +133,7 @@ const About = () => {
               <div className="governance_ethics_text">
                 <p className="about_us_heading_2 h2">Governance & Ethics</p>
               </div>
+              <div className="vertical_spacer_small"></div>
               <div className="governance_ethics_cards row">
                 <div className="governance_ethics_card col-sm-12 col-md-2">
                   <p className="about_us_heading_3 h4">
