@@ -1,0 +1,82 @@
+.services-page {
+  padding-left: 7.813vw;
+  padding-right: 7.813vw;
+  background-color: var(--backgrounds---color-bg);
+}
+.brahmin_purohits-text {
+  font-weight: 600;
+  color: var(--primary-brand---color-primary);
+}
+.book-purohit-button {
+  background-color: var(--neutrals---color-white);
+  color: var(--primary-brand---color-primary);
+  border: 1px solid var(--primary-brand---color-primary);
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.313rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.brahmin_purohits-card-addresses {
+  display: flex;
+  gap: 1vw;
+}
+.location_1 {
+  background: var(--backgrounds---color-border);
+  width: max-content;
+  padding: 0.313rem 0.625rem;
+}
+.brahmin_purohits-card-text {
+  width: 49.583vw;
+}
+.brahmin_purohits-cards {
+  display: flex;
+  gap: 3.125vw;
+  margin-top: 3.125rem;
+}
+.image_container {
+  width: 10.417vw;
+}
+.brahmin_purohits-card {
+  gap: 2.08vw;
+}
+.brahmin_purohits-card-subtitle {
+  display: flex;
+  gap: 2.083vw;
+}
+.madi_vantalu-title p,
+.madi_vantalu-view-more a {
+  margin-top: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--primary-brand---color-primary);
+  transition: color 0.3s;
+}
+.madi_vantalu-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.madi_vantalu-card {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 53px 15px 0 rgba(0, 0, 0, 0), 0 34px 14px 0 rgba(0, 0, 0, 0.01),
+    0 19px 12px 0 rgba(0, 0, 0, 0.05), 0 9px 9px 0 rgba(0, 0, 0, 0.09),
+    0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.madi_vantalu-card-text {
+  text-align: center;
+}
+.madi-vantalu-enquiry-button {
+  background-color: var(--neutrals---color-white);
+  color: var(--primary-brand---color-primary);
+  border: 1px solid var(--primary-brand---color-primary);
+  padding: 0.625rem 1.25rem;
+}
+.madi_vantalu-items {
+  gap: 3vw;
+}

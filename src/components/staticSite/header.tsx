@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/uktbcLogo.png";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import "./css/header.css";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="header col-sm-12">
       <div className="header-row-1 col-sm-12">
@@ -52,11 +54,16 @@ const Header: React.FC = () => {
             <div className="header_icon">
               <Icon icon="lucide:user-lock" width="35" height="35" />
             </div>
+
+            {/* 👇 Add hamburger here */}
+            <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+              <Icon icon="mdi:menu" width="30" height="30" />
+            </div>
           </div>
         </div>
 
         {/* Navigation Menu */}
-        <div className="header-nav col-sm-6">
+        <div className={`header-nav col-sm-6 ${menuOpen ? "open" : ""}`}>
           <nav className="nav-links">
             <a href="/">Home</a>
             <a href="/about">About Us</a>
@@ -65,7 +72,7 @@ const Header: React.FC = () => {
             <a href="/events">Events</a>
             <a href="/vipravaani">Vipravaani</a>
             <a href="/resources">Resources</a>
-            <a href="/contact">Contact Us</a>
+            <a href="/contact-us">Contact Us</a>
           </nav>
         </div>
       </div>

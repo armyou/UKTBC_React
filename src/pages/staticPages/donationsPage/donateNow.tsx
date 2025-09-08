@@ -1,304 +1,389 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Checkbox,
-  InputNumber,
-  Card,
-  Typography,
-  Row,
-  Col,
-  Select,
-  message,
-} from "antd";
-import ReCAPTCHA from "react-google-recaptcha";
-import { loadStripe } from "@stripe/stripe-js";
-import { donateNow } from "../../../api_calls/donationsApi";
-import countries from "world-countries"; // ✅ npm install world-countries
-import axios from "axios";
-
-const { Title } = Typography;
-const { Option } = Select;
-
-const stripePromise = loadStripe("pk_test_51RxuzdQ5LN6AbcmTsFe3rpYO1qVdqiJCysfZH1Zb8Uq5kltWc9qEibl2Bg6aXxT2IyNp2cqz1cMswzKIrCAK0EYr003oOHFYFE"); // your publishable key
-const GETADDRESS_API_KEY = "YOUR_GETADDRESS_IO_API_KEY"; // 👈 replace with real key
+import { Form, Input, Button, Radio, Select, Row, Col } from "antd";
+import { Icon } from "@iconify/react";
+import gopuram from "../../../assets/gopuram.png";
+import backgroundFrame from "../../../assets/background_header_frame.png";
+import "./DonateNow.css";
 
 const DonateNow: React.FC = () => {
+  const [amount, setAmount] = useState("");
+  const [isCompany, setIsCompany] = useState<"yes" | "no">("no");
   const [form] = Form.useForm();
-  const [isCompany, setIsCompany] = useState(false);
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<string>("United Kingdom");
-
-  const [addresses, setAddresses] = useState<string[]>([]);
-  const [manualEntry, setManualEntry] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const onFinish = async (values: any) => {
-    values.ClaimGiftAid = values.ClaimGiftAid === "yes";
-
-    try {
-      const response = await donateNow(values);
-      if (response?.sessionId) {
-        const stripe = await stripePromise;
-        if (stripe) {
-          const { error } = await stripe.redirectToCheckout({
-            sessionId: response.sessionId,
-          });
-          if (error) {
-            console.error("Stripe redirect error:", error.message);
-          }
-        }
-      }
-    } catch (err) {
-      console.error("Donation failed:", err);
-    }
-  };
-
-  const handleCountryChange = (value: string) => {
-    setSelectedCountry(value);
-
-    if (value !== "United Kingdom") {
-      form.setFieldsValue({ ClaimGiftAid: "no" });
-    } else {
-      form.resetFields(["ClaimGiftAid"]);
-    }
-  };
-
-  // 🔍 Fetch address list from getAddress.io
-  const findAddress = async () => {
-    const postcode = form.getFieldValue("companyPostcode");
-    if (!postcode) {
-      message.warning("Please enter a postcode first");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const { data } = await axios.get(
-        `https://api.getaddress.io/find/${postcode}?api-key=${GETADDRESS_API_KEY}`
-      );
-
-      if (data?.addresses?.length) {
-        setAddresses(data.addresses);
-        message.success("Addresses found. Please select one.");
-      } else {
-        message.error("No addresses found for this postcode.");
-      }
-    } catch (error) {
-      message.error("Failed to fetch addresses. Check postcode or API key.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAddressSelect = (address: string) => {
-    // split into parts: "House, Street, Town, County"
-    const parts = address.split(",");
-    form.setFieldsValue({
-      companyAddress: parts.slice(0, 2).join(", "),
-      companyCity: parts[parts.length - 3] || "",
-    });
-  };
+  const [showManualAddress, setShowManualAddress] = useState(false);
+  const donationType = Form.useWatch("donationType", form);
+  const presetAmounts = ["11", "51", "116", "516", "1116"];
 
   return (
-    <div className="donate-container">
-      <Card className="donate-card col-sm-8">
-        <Title level={3} className="donate-title">
-          Donate Now
-        </Title>
-
-        <Form layout="vertical" onFinish={onFinish} form={form}>
-          {/* Personal Details */}
-          <Row gutter={16}>
-            <Col xs={24} sm={12}>
-              <Form.Item name="firstName" rules={[{ required: true }]}>
-                <Input placeholder="Enter first name" />
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={12}>
-              <Form.Item name="lastName" rules={[{ required: true }]}>
-                <Input placeholder="Enter last name" />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col xs={24} sm={12}>
-              <Form.Item name="email" rules={[{ required: true, type: "email" }]}>
-                <Input placeholder="Enter email" />
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={12}>
-              <Form.Item name="phone" rules={[{ required: true }]}>
-                <Input placeholder="Enter phone number" />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          {/* Donation on behalf of company */}
-          <Form.Item
-            name="onBehalfOfCompany"
-            label="Is the donation on behalf of a company?"
-            rules={[{ required: true }]}
-          >
-            <Radio.Group onChange={(e) => setIsCompany(e.target.value === "yes")}>
-              <Radio value="yes">Yes</Radio>
-              <Radio value="no">No</Radio>
-            </Radio.Group>
-          </Form.Item>
-
-          {isCompany && (
-            <Form.Item name="companyName" rules={[{ required: true }]}>
-              <Input placeholder="Enter company name" />
-            </Form.Item>
-          )}
-
-          {/* ✅ Address lookup for UK */}
-          {selectedCountry === "United Kingdom" && !manualEntry && (
-            <>
+    <div className="main_container">
+      <div className="donate_now-container">
+        <div className="contact_us-image_container">
+          <img
+            src={backgroundFrame}
+            alt="Background Frame"
+            className="background-img"
+          ></img>
+          <img src={gopuram} alt="Gopuram" className="overlay-img"></img>
+          <div className="contact_us-text">
+            <h1>Support Our Dharma, Culture & Community</h1>
+            <p>
+              Your contribution helps sustain Vedic education, cultural
+              preservation, and community service.
+            </p>
+          </div>
+        </div>
+        <div className="donate_now-form_container">
+          <div className="donate-container">
+            <div className="donate_noe-bank_details">
+              <p
+                className="donate-title h2"
+                style={{ fontWeight: "600", color: "#E65100" }}
+              >
+                Donate by Bank Transfer
+              </p>
+              <p className="muted_color">
+                If you prefer to donate directly from your bank, please use the
+                details below:
+              </p>
+              <p>
+                <strong>Account name:</strong>UK Telugu Brahmin Community
+              </p>
+              <p>
+                <strong>Sort Code:</strong>08-92-99
+              </p>
+              <p>
+                <strong>Account number:</strong>67344000
+              </p>
+              <p>
+                <strong>Bank:</strong>The Co-operative Bank
+              </p>
+              <p className="muted_color">
+                Note: Please include your full name as the payment reference
+                when making the transfer. Alternatively, if you’d like to donate
+                securely using our online payment options, please continue
+                below.
+              </p>
+            </div>
+            <p className="h2" style={{ fontWeight: 600, color: "#E65100" }}>
+              Donate to UKTBC
+            </p>
+            <Form
+              form={form}
+              layout="horizontal"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              className="donation-form"
+            >
+              {/* First Name / Last Name */}
               <Row gutter={16}>
-                <Col xs={16}>
+                <Col span={12}>
                   <Form.Item
-                    name="companyPostcode"
-                    rules={[{ required: true, message: "Enter UK postcode" }]}
+                    label="First Name"
+                    name="firstName"
+                    className="label-firstName"
+                    rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter postcode" />
+                    <Input placeholder="Enter First Name" />
                   </Form.Item>
                 </Col>
-                <Col xs={8}>
-                  <Button
-                    type="default"
-                    onClick={findAddress}
-                    loading={loading}
-                    style={{ marginTop: 4 }}
-                    className="donate-button"
+                <Col span={12}>
+                  <Form.Item
+                    label="Last Name"
+                    name="lastName"
+                    rules={[{ required: true }]}
+                    className="label-lastName"
                   >
+                    <Input placeholder="Enter Last Name" />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              {/* Email / Mobile */}
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[{ required: true }]}
+                    className="label-email"
+                  >
+                    <Input placeholder="Enter Email" />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    label="Mobile"
+                    name="mobile"
+                    rules={[{ required: true }]}
+                    className="label-mobile"
+                  >
+                    <Input placeholder="Enter Mobile" />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              {/* Company Donation */}
+              <Form.Item name="companyDonation">
+                <p className="h4">Is this donation on behalf of company?</p>
+                <Radio.Group
+                  onChange={(e) => setIsCompany(e.target.value)}
+                  value={isCompany}
+                >
+                  <Radio value="yes">Yes</Radio>
+                  <Radio value="no">No</Radio>
+                </Radio.Group>
+              </Form.Item>
+
+              {/* If company donation */}
+              {isCompany === "yes" && (
+                <>
+                  <Form.Item
+                    label="Company Name"
+                    name="companyName"
+                    rules={[{ required: true }]}
+                    className="label-companyName"
+                  >
+                    <Input placeholder="Enter Company Name" />
+                  </Form.Item>
+                </>
+              )}
+
+              {/* Note */}
+              <p className=" ">
+                Note: Postcode lookup is for UK addresses only. For overseas or
+                missing addresses, enter manually.
+              </p>
+
+              {/* Postcode / Find Address */}
+              <Row gutter={16}>
+                <Col span={8}>
+                  <Form.Item
+                    label="Postcode"
+                    name="postcode"
+                    rules={[{ required: true }]}
+                    className="label-postcode"
+                  >
+                    <Input placeholder="Enter Postcode" />
+                  </Form.Item>
+                </Col>
+                <Col span={8}>
+                  <Button className="find_address-btn" type="primary">
                     Find Address
+                  </Button>
+                </Col>
+                <Col span={8}>
+                  <Button
+                    className="enter_manually-btn"
+                    type="primary"
+                    onClick={() => setShowManualAddress((prev) => !prev)}
+                  >
+                    {showManualAddress ? "Hide Address" : "Enter Manually"}
                   </Button>
                 </Col>
               </Row>
 
-              {addresses.length > 0 && (
-                <Form.Item label="Select Address">
-                  <Select
-                    placeholder="Choose address"
-                    onChange={handleAddressSelect}
+              {/* Address fields */}
+              {showManualAddress && (
+                <>
+                  <Form.Item
+                    label="Address Line 1 *"
+                    name="address1"
+                    rules={[{ required: true }]}
+                    className="label-address1"
                   >
-                    {addresses.map((addr, idx) => (
-                      <Option key={idx} value={addr}>
-                        {addr}
-                      </Option>
-                    ))}
-                  </Select>
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Address Line 2"
+                    name="address2"
+                    className="label-address2"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Address Line 3"
+                    name="address3"
+                    className="label-address3"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Town / City *"
+                    name="city"
+                    rules={[{ required: true }]}
+                    className="label-city"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Country *"
+                    name="country"
+                    rules={[{ required: true }]}
+                    className="label-country"
+                  >
+                    <Select
+                      defaultValue="United Kingdom"
+                      disabled={isCompany === "yes"}
+                    >
+                      <Select.Option value="United Kingdom">
+                        United Kingdom
+                      </Select.Option>
+                      <Select.Option value="India">India</Select.Option>
+                      <Select.Option value="USA">USA</Select.Option>
+                      <Select.Option value="Other">Other</Select.Option>
+                    </Select>
+                  </Form.Item>
+                </>
+              )}
+
+              {/* Company Donation = simple amount input */}
+              {isCompany === "yes" && (
+                <Form.Item
+                  label="Amount (GBP)"
+                  name="donationAmount"
+                  rules={[{ required: true }]}
+                  className="label-amountGBP"
+                >
+                  <Input
+                    prefix={<Icon icon="mdi:currency-gbp" />}
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Enter amount"
+                  />
                 </Form.Item>
               )}
 
-              <Button
-                type="link"
-                onClick={() => setManualEntry(true)}
-                style={{ paddingLeft: "1vw", color: "var(--color-secondary)", border: "1px solid var(--color-secondary)", marginBottom: "1vh" }}
-              >
-                Enter address manually
-              </Button>
-            </>
-          )}
+              {/* Personal Donation = amount buttons + input + donation type + gift aid */}
+              {isCompany === "no" && (
+                <>
+                  <Row gutter={16} align="middle">
+                    <Col span={12}>
+                      <div className="amount-buttons">
+                        {presetAmounts.map((amt) => (
+                          <Button
+                            className="preset-amount-btn"
+                            key={amt}
+                            onClick={() => {
+                              setAmount(amt);
+                              form.setFieldsValue({ donationAmount: amt });
+                            }}
+                          >
+                            <Icon icon="mdi:currency-gbp" />
+                            {amt}
+                          </Button>
+                        ))}
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <Form.Item
+                        label="Donation Amount"
+                        name="donationAmount"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter donation amount",
+                          },
+                        ]}
+                        className="label-donationAmount"
+                      >
+                        <Input
+                          prefix={<Icon icon="mdi:currency-gbp" />}
+                          onChange={(e) => {
+                            setAmount(e.target.value);
+                          }}
+                          placeholder="Enter custom amount"
+                          className="input-donationAmount"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-          {/* Manual entry (or non-UK) */}
-          {(manualEntry || selectedCountry !== "United Kingdom") && (
-            <>
-              <Form.Item name="companyAddress" rules={[{ required: true }]}>
-                <Input placeholder="Enter address line" />
-              </Form.Item>
-              <Row gutter={16}>
-                <Col xs={24} sm={12}>
-                  <Form.Item name="companyCity" rules={[{ required: true }]}>
-                    <Input placeholder="Enter city" />
+                  <Form.Item
+                    label="Payment Reference"
+                    name="paymentReference"
+                    className="label-paymentReference"
+                  >
+                    <Input placeholder="Enter Payment Reference" />
                   </Form.Item>
-                </Col>
-                <Col xs={24} sm={12}>
-                  <Form.Item name="companyPostcode" rules={[{ required: true }]}>
-                    <Input placeholder="Enter postcode" />
+                  {/* Donation Type */}
+                  <Form.Item label="Donation Type" name="donationType">
+                    <Radio.Group
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (value === "fundraising") {
+                          form.setFieldsValue({ giftAidClaim: "no" });
+                        } else {
+                          form.setFieldsValue({ giftAidClaim: undefined });
+                        }
+                      }}
+                    >
+                      <Radio value="own">I’m donating my own money</Radio>
+                      <Radio value="fundraising">
+                        I’m Paying money from fundraising or a collection
+                      </Radio>
+                    </Radio.Group>
                   </Form.Item>
-                </Col>
-              </Row>
-            </>
-          )}
 
-          {/* Country select */}
-          <Form.Item
-            name="companyCountry"
-            rules={[{ required: true, message: "Please select a country" }]}
-          >
-            <Select
-              showSearch
-              placeholder="Select country"
-              onChange={handleCountryChange}
-            >
-              {countries
-                .sort((a, b) => a.name.common.localeCompare(b.name.common))
-                .map((c) => (
-                  <Option key={c.cca2} value={c.name.common}>
-                    {c.name.common}
-                  </Option>
-                ))}
-            </Select>
-          </Form.Item>
+                  <p>Boost your donation by 25% With Gift Aid</p>
+                  <p>
+                    Your donation of £100.00 would be worth £125.00 at no extra
+                    cost to you.
+                  </p>
 
-          {/* Donation Details */}
-          <Form.Item name="donationAmount" rules={[{ required: true }]}>
-            <InputNumber
-              min={1}
-              style={{ width: "100%" }}
-              placeholder="Enter donation amount (£)"
-            />
-          </Form.Item>
+                  {/* Gift Aid */}
+                  <Form.Item
+                    label="Please Claim Gift Aid on my donation"
+                    name="giftAidClaim"
+                    className="label-giftAidClaim"
+                  >
+                    <Radio.Group disabled={donationType !== "own"}>
+                      <Radio value="yes">Yes</Radio>
+                      <Radio value="no">No</Radio>
+                    </Radio.Group>
+                  </Form.Item>
 
-          <p style={{ color: "var(--color-text)", marginBottom: "1rem" }}>
-            Only UK residences are able to claim Gift Aid.
-          </p>
+                  <p className="gift-aid-info">
+                    I want to Gift Aid my donation and any donations I make in
+                    the future or have made in the past 4 years, to UK Telugu
+                    Brahmin Community (1205566). I am a UK taxpayer and
+                    understand that if I pay less Income Tax and/or Capital
+                    Gains Tax than the amount of Gift Aid claimed on all of my
+                    donations in that tax year, it is my responsibility to pay
+                    any difference. UK Telugu Brahmin Community (1205566) will
+                    claim 25p on every £1 donated.
+                  </p>
+                </>
+              )}
 
-          <Form.Item
-            name="ClaimGiftAid"
-            label="Please claim Gift Aid on my donation"
-            rules={[{ required: true }]}
-          >
-            <Radio.Group disabled={selectedCountry !== "United Kingdom"}>
-              <Radio value="yes">Yes</Radio>
-              <Radio value="no">No</Radio>
-            </Radio.Group>
-          </Form.Item>
+              {/* Always show payment reference if company */}
+              {isCompany === "yes" && (
+                <Form.Item
+                  label="Payment Reference"
+                  name="paymentReference"
+                  className="label-paymentReference"
+                >
+                  <Input placeholder="Enter Payment Reference" />
+                </Form.Item>
+              )}
 
-          <Form.Item name="isThisPersonalMoney" valuePropName="checked">
-            <Checkbox>This donation is my personal money</Checkbox>
-          </Form.Item>
-
-          {/* Captcha */}
-          <div style={{ marginBottom: 20 }}>
-            <ReCAPTCHA
-              sitekey="YOUR_RECAPTCHA_SITE_KEY"
-              onChange={(value: React.SetStateAction<string | null>) =>
-                setCaptchaValue(value)
-              }
-            />
+              {/* Stripe + PayPal at bottom (keep existing implementation) */}
+              {/* Payment buttons */}
+              <div className="donate-buttons">
+                <p className="h4" style={{ color: "#E65100" }}>
+                  Donate with
+                </p>
+                <Button
+                  type="primary"
+                  icon={<Icon icon="logos:paypal" width="3.813vw" />}
+                />
+                <Button
+                  type="default"
+                  icon={<Icon icon="logos:stripe" width="7.813vw" />}
+                />
+              </div>
+            </Form>
           </div>
-
-          {/* Submit */}
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-              className="donate-button col-sm-8"
-            >
-              Make Payment
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
