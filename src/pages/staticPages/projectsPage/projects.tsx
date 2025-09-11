@@ -1,31 +1,51 @@
 // import React from 'react'
 import gopuram from "../../../assets/projects overlaying image.png";
+import gopuram1 from "../../../assets/projects overlaying image.png";
+import gopuram2 from "../../../assets/projects overlaying image.png";
+import gopuram3 from "../../../assets/projects overlaying image.png";
 import backgroundFrame from "../../../assets/background_header_frame.png";
-import { Button } from "antd";
+import { Button, Carousel } from "antd";
 import "./projects.css";
 const Projects = () => {
   return (
     <>
-      <div className="contact_us-image_container">
-        <img
-          src={backgroundFrame}
-          alt="Background Frame"
-          className="background-img"
-        ></img>
-        <img src={gopuram} alt="Gopuram" className="overlay-img"></img>
-        <div className="contact_us-text">
-          <h1>Projects</h1>
-          <p>
-            Initiatives that preserve dharma, strengthen culture, and serve the
-            community
-          </p>
-          <div className="projects_header-button">
-            <Button type="primary" className="projects_join-button">
-              Join as volunteer
-            </Button>
+      <div className="vertical_spacer_smaller"></div>
+      <div className="contact_us-projects-container">
+        <div className="overlay-content">
+          {/* Left side text + button */}
+          <div className="projects-text">
+            <h1>Projects</h1>
+            <p>
+              Initiatives that preserve dharma, strengthen culture, and serve
+              the community
+            </p>
+            <div className="projects_header-button">
+              <Button type="primary" className="projects_join-button">
+                Join as volunteer
+              </Button>
+            </div>
+          </div>
+
+          {/* Right side carousel */}
+          <div className="projects-carousel">
+            <Carousel autoplay dots effect="scrollx">
+              <div>
+                <img src={gopuram} alt="Project 1" />
+              </div>
+              <div>
+                <img src={gopuram1} alt="Project 2" />
+              </div>
+              <div>
+                <img src={gopuram2} alt="Project 3" />
+              </div>
+              <div>
+                <img src={gopuram3} alt="Project 4" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </div>
+
       <div className="projects-container col-md-12">
         <div className="projects-list">
           <div className="vertical_spacer"></div>

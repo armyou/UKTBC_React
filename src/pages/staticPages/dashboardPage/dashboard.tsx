@@ -88,7 +88,7 @@ const Dashboard: React.FC = () => {
                     height: 46,
                     borderRadius: 8,
                   }}
-                  onClick={() => navigate("/donate-now")}
+                  onClick={() => navigate("/events")}
                 >
                   Explore our events
                 </Button>
@@ -152,7 +152,7 @@ const Dashboard: React.FC = () => {
                     height: 46,
                     borderRadius: 8,
                   }}
-                  onClick={() => navigate("/donate-now")}
+                  onClick={() => navigate("/about")}
                 >
                   Learn more about us
                 </Button>
@@ -190,7 +190,7 @@ const Dashboard: React.FC = () => {
                     across the UK to support rituals, ceremonies, and dharmic
                     observances.
                   </p>
-                  <a href="/dharma" className="our_initiatives-card-link">
+                  <a href="/services" className="our_initiatives-card-link">
                     Learn More →
                   </a>
                 </div>
@@ -214,7 +214,7 @@ const Dashboard: React.FC = () => {
                     Promoting satvik vegetarian food & connecting Brahmin
                     caterers with communities for spiritually aligned catering.
                   </p>
-                  <a href="/satvik" className="our_initiatives-card-link">
+                  <a href="/services" className="our_initiatives-card-link">
                     Learn More →
                   </a>
                 </div>
@@ -238,7 +238,7 @@ const Dashboard: React.FC = () => {
                     Organizing major Hindu festivals like Maha Shivaratri &
                     Seetharama Kalyanam, uniting the community in devotion.
                   </p>
-                  <a href="/festivals" className="our_initiatives-card-link">
+                  <a href="/services" className="our_initiatives-card-link">
                     Learn More →
                   </a>
                 </div>
@@ -257,15 +257,30 @@ const Dashboard: React.FC = () => {
             <p>Connecting you with purohit, traditions, and community living</p>
           </div>
           <br />
-          <div className="cards-container_1">
+          <div
+            className="cards-container_1"
+            style={{ justifyContent: "space-around" }}
+          >
             {/* Card 1 */}
-            <div className="booking-card_1">
+            <div
+              className="booking-card_1"
+              style={{
+                width: "31.042vw",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                flexWrap: "nowrap",
+                alignItems: "center",
+                gap: "20px",
+                height: "300px",
+              }}
+            >
               <img
                 src={purohith}
                 alt="Brahmin Purohit"
                 className="card-image_1"
               />
-              <div className="card-content_1">
+              <div className="card-content_1" style={{ gap: "0px" }}>
                 <h3>Brahmin Purohit Booking</h3>
                 <br />
                 <p>
@@ -273,22 +288,42 @@ const Dashboard: React.FC = () => {
                   ceremonies across the UK.
                 </p>
                 <br />
-                <Button type="primary" className="card-btn_1">
+                <Button
+                  type="primary"
+                  className="card-btn_1"
+                  onClick={() => navigate("/services")}
+                >
                   Book Now
                 </Button>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className="booking-card_1">
+            <div
+              className="booking-card_1"
+              style={{
+                width: "31.042vw",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                flexWrap: "nowrap",
+                alignItems: "center",
+                gap: "20px",
+                height: "300px",
+              }}
+            >
               <img src={meal} alt="Madi Vantalu" className="card-image_1" />
-              <div className="card-content_1">
+              <div className="card-content_1" style={{ gap: "0px" }}>
                 <h3>Madi Vantalu (Brahmin Caterers)</h3>
                 <p>
                   Experience sattvik vegetarian catering rooted in dharmic
                   values, for family functions, festivals, and community events.
                 </p>
-                <Button type="primary" className="card-btn_1">
+                <Button
+                  type="primary"
+                  className="card-btn_1"
+                  onClick={() => navigate("/services")}
+                >
                   Book Now
                 </Button>
               </div>
@@ -296,13 +331,14 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className="vertical_spacer_smaller"></div>
       <div className="section_5 col-md-12">
         <div className="upcoming-events-title-container">
           <div className="upcoming-events-title">
             <p className="h2">Upcoming Events</p>
           </div>
           <div className="upcoming-events-view-more">
-            <a href="#">View more →</a>
+            <a href="/events">View more →</a>
           </div>
         </div>
         <div className="upcoming-events-desc">
@@ -318,14 +354,18 @@ const Dashboard: React.FC = () => {
               className="card-image_1"
             />
             <div className="card-content_1">
-              <h3>Brahmin Purohit Booking</h3>
+              <h3>Seetharama Kalyanam</h3>
               <h6>25th April, 2025</h6>
               <p>
                 Event description about seetharama kalyanam, location and etc...
               </p>
               <br />
-              <Button type="primary" className="card-btn_1">
-                Book Now
+              <Button
+                type="primary"
+                className="card-btn_1"
+                onClick={() => navigate("/events")}
+              >
+                Know more
               </Button>
             </div>
           </div>
@@ -338,13 +378,17 @@ const Dashboard: React.FC = () => {
               className="card-image_1"
             />
             <div className="card-content_1">
-              <h3>Madi Vantalu (Brahmin Caterers)</h3>
+              <h3>Hanuman Jayanthi</h3>
               <h6>25th April, 2025</h6>
               <p>
                 Event description about Hanuman Jayanthi, location and etc...
               </p>
-              <Button type="primary" className="card-btn_1">
-                Book Now
+              <Button
+                type="primary"
+                className="card-btn_1"
+                onClick={() => navigate("/events")}
+              >
+                Know more
               </Button>
             </div>
           </div>
@@ -356,13 +400,17 @@ const Dashboard: React.FC = () => {
               className="card-image_1"
             />
             <div className="card-content_1">
-              <h3>Madi Vantalu (Brahmin Caterers)</h3>
+              <h3>Geetha Chanting</h3>
               <h6>25th April, 2025</h6>
               <p>
                 Event description about Geetha Chanting, location and etc...
               </p>
-              <Button type="primary" className="card-btn_1">
-                Book Now
+              <Button
+                type="primary"
+                className="card-btn_1"
+                onClick={() => navigate("/events")}
+              >
+                Know more
               </Button>
             </div>
           </div>
@@ -376,7 +424,7 @@ const Dashboard: React.FC = () => {
               <p className="h2">Panchangam</p>
             </div>
             <div className="panchangam-container-view-more">
-              <a href="#">View more →</a>
+              <a href="/resources">View more →</a>
             </div>
           </div>
           <div className="panchangam-desc">

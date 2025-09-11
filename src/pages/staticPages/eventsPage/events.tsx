@@ -9,6 +9,7 @@ import "./events.css";
 const Events = () => {
   return (
     <>
+      <div className="vertical_spacer_smaller"></div>
       <div className="contact_us-image_container">
         <img
           src={backgroundFrame}

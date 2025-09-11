@@ -1,6 +1,6 @@
 .about-page {
-  padding-left: 7.813vw;
-  padding-right: 7.813vw;
+  padding-left: 16.813vw;
+  padding-right: 16.813vw;
   background-color: var(--backgrounds---color-bg);
 }
 .about_us_heading_1 {
@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   align-self: stretch;
 }
 .about-card {
@@ -36,11 +36,12 @@
   height: 32vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   box-shadow: 0 53px 15px 0 rgba(0, 0, 0, 0), 0 34px 14px 0 rgba(0, 0, 0, 0.01),
     0 19px 12px 0 rgba(0, 0, 0, 0.05), 0 9px 9px 0 rgba(0, 0, 0, 0.09),
     0 2px 5px 0 rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left: 10px;
 }
 .about-card:hover {
   transform: translateY(-5px);
@@ -60,10 +61,10 @@
 .governance_ethics_card {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding: 10px;
   width: 20vw;
-  height: 45vh;
+  height: 29.63vh;
   border-radius: 16px;
   background-color: var(--neutrals---color-white);
   box-shadow: 0 53px 15px 0 rgba(0, 0, 0, 0), 0 34px 14px 0 rgba(0, 0, 0, 0.01),

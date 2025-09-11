@@ -3,7 +3,8 @@ import type { CSSProperties } from "react";
 import { useState } from "react";
 import gopuram from "../../../assets/gopuram.png";
 import backgroundFrame from "../../../assets/background_header_frame.png";
-import { Form, Input, Select, Upload, Button, Row, Col } from "antd";
+import { Form, Input, Select, Button, Row, Col } from "antd";
+import { Icon } from "@iconify/react";
 const { Option } = Select;
 const { TextArea } = Input;
 import "./contactPage.css";
@@ -103,22 +104,34 @@ const Contact: React.FC = () => {
               className="inline-field"
               rules={[{ required: true }]}
             >
-              <Input placeholder="Enter subject" />
+              <Input placeholder="Enter subject" className="subject-input" />
             </Form.Item>
 
             <Form.Item name="message" rules={[{ required: true }]}>
-              <TextArea rows={4} placeholder="Enter your message" />
+              <TextArea
+                rows={4}
+                placeholder="Enter your message"
+                className="message-textarea"
+              />
             </Form.Item>
 
             {/* Custom File Upload */}
             <Form.Item
-              label="File"
+              label={
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  File{"  "}
+                  <Icon icon="tabler:paperclip" width="20" height="20" />
+                </span>
+              }
               name="file"
               className="inline-field file-field"
             >
               <div style={{ width: "100%" }}>
                 <Input
                   value={fileName}
+                  className="file-input"
                   readOnly
                   suffix={
                     <span
@@ -154,6 +167,7 @@ const Contact: React.FC = () => {
                 />
               </div>
             </Form.Item>
+
             <div></div>
             <div className="form_description" style={{ marginTop: "1rem" }}>
               <p>
@@ -166,6 +180,7 @@ const Contact: React.FC = () => {
               <Button
                 type="primary"
                 htmlType="submit"
+                className="submit-contact_btn"
                 block
                 style={{ width: "10.417vw", left: "45%" }}
               >

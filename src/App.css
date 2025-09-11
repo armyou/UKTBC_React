@@ -39,3 +39,15 @@
 .vertical_spacer_smaller {
   height: 2vh;
 }
+/* antd radion buttons css global */
+.ant-radio-checked .ant-radio-inner {
+  border-color: var(--primary-brand---color-primary) !important;
+  background-color: var(--primary-brand---color-primary) !important;
+}
+
+.ant-radio-checked .ant-radio-inner::after {
+  display: none !important;
+}
+.ant-radio:hover .ant-radio-inner {
+  border-color: var(--primary-brand---color-primary) !important;
+}

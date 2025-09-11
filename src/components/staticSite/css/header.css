@@ -52,6 +52,12 @@
   background-color: var(--primary-brand---color-primary-light) !important;
   border: none;
 }
+.hbtn:active {
+  background-color: var(--primary-brand---color-primary-dark) !important;
+  border-color: var(--primary-brand---color-primary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
+}
 .header_right_col {
   display: flex;
   flex-direction: row;
@@ -91,10 +97,9 @@
   .header-nav.open {
     display: flex !important;
     flex-direction: column;
-    background: white;
+    background: var(--neutrals---color-white);
     width: 100%;
     position: absolute;
-    top: 70px;
     left: 0;
     padding: 1rem;
     z-index: 1000;

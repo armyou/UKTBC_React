@@ -214,7 +214,7 @@
 }
 
 .card-btn_1 {
-  background-color: var(--secondary---color-secondary) !important;
+  background-color: var(--primary-brand---color-primary) !important;
   border: none;
   width: 6.927vw;
   height: 2.188vw;
@@ -222,6 +222,16 @@
   gap: 10px;
   margin-left: auto;
   margin-right: auto;
+}
+.card-btn_1:hover,
+.card-btn_1:focus {
+  background-color: var(--primary-brand---color-primary-light) !important;
+  border: 1px solid var(--primary-brand---color-primary-light) !important;
+}
+.card-btn_1:active {
+  background-color: var(--primary-brand---color-primary-dark) !important;
+  border: 1px solid var(--primary-brand---color-primary-dark) !important;
+  transform: scale(0.95);
 }
 .upcoming-events {
   display: flex;
@@ -303,7 +313,7 @@
 
 .card-text {
   background-color: var(--secondary---color-secondary);
-  color: white;
+  color: var(--neutrals---color-white);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -316,7 +326,7 @@
 }
 .card-link {
   font-weight: bold;
-  color: white;
+  color: var(--neutrals---color-white);
   text-decoration: none;
 }
 
@@ -329,11 +339,35 @@
   border: 1px solid var(--primary-brand---color-primary);
   border-radius: 8px;
 }
+.explbtn:hover,
+.explbtn:focus {
+  background-color: var(--neutrals---color-white) !important;
+  border: 1px solid var(--secondary---color-secondary);
+  color: var(--secondary---color-secondary) !important;
+}
+.explbtn:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border: 1px solid var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
+}
 .learnbtn {
   background-color: var(--neutrals---color-white);
   color: var(--primary-brand---color-primary);
   border: 1px solid var(--primary-brand---color-primary);
   border-radius: 8px;
+}
+.learnbtn:hover,
+.learnbtn:focus {
+  background-color: var(--neutrals---color-white) !important;
+  border: 1px solid var(--secondary---color-secondary-dark);
+  color: var(--secondary---color-secondary) !important;
+}
+.learnbtn:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border: 1px solid var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
 }
 /* ✅ Responsive Fixes */
 

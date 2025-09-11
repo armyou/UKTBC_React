@@ -9,6 +9,16 @@
 .projects_join-button {
   background-color: var(--primary-brand---color-primary);
 }
+.projects_join-button:hover,
+.projects_join-button:focus {
+  background-color: var(--primary-brand---color-primary-light) !important;
+  color: var(--neutrals---color-white) !important;
+  border: 1px solid var(--primary-brand---color-primary-light) !important;
+}
+.projects_join-button:active {
+  background-color: var(--primary-brand---color-primary-dark) !important;
+  border: 1px solid var(--primary-brand---color-primary-dark) !important;
+}
 .project-title {
   font-weight: 600;
 }
@@ -23,6 +33,17 @@
   border-radius: 0.313rem;
   font-weight: 500;
   cursor: pointer;
+}
+.projects_know_more-button:hover,
+.projects_know_more-button:focus {
+  background-color: var(--neutrals---color-white) !important;
+  color: var(--secondary---color-secondary) !important;
+  border: 1px solid var(--secondary---color-secondary) !important;
+}
+.projects_know_more-button:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border: 1px solid var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
 }
 .project-image-container {
   width: 31.042vw;
@@ -45,4 +66,52 @@
   justify-content: space-around;
   align-items: flex-start;
   gap: 3vh;
+}
+
+/* overlaying container */
+.contact_us-projects-container {
+  position: relative;
+  background-image: url("../../../assets/background_header_frame.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.overlay-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 95%;
+  color: white;
+}
+
+.projects-text {
+  flex: 1;
+  max-width: 33%;
+}
+
+.projects-text h1 {
+  color: var(--primary-brand---color-primary-light);
+  font-weight: 700;
+}
+
+.projects-text p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.projects-carousel {
+  flex: 1;
+  max-width: 37%;
+}
+
+.projects-carousel img {
+  width: 31.042vw;
+  height: auto;
+  border-radius: 12px;
 }

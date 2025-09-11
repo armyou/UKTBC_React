@@ -632,9 +632,12 @@ const Services = () => {
               <div className="madi_vantalu-title-container">
                 <div className="madi_vantalu-title">
                   <p className="h2">Madi Vantalu (Brahmin Caterers)</p>
+                  <br />
                 </div>
                 <div className="madi_vantalu-view-more">
-                  <a href="#">View more →</a>
+                  <a className="view-more" href="#">
+                    View more →
+                  </a>
                 </div>
               </div>
               <div className="madi_vantalu-items row">
@@ -643,7 +646,7 @@ const Services = () => {
                     <img src={bananaLeafMeal} alt="Brahmin Caterers"></img>
                   </div>
                   <div className="madi_vantalu-card-text">
-                    <div className="madi_vantalu-card-title h2">
+                    <div className="madi_vantalu-card-title h4">
                       Caterer Name
                     </div>
                     <div className="madi_vantalu-card-subtitle">
@@ -662,7 +665,7 @@ const Services = () => {
                         type="primary"
                         className="madi-vantalu-enquiry-button"
                       >
-                        Enquiry Now{" "}
+                        Enquiry Now
                       </Button>
                     </div>
                   </div>
@@ -672,7 +675,7 @@ const Services = () => {
                     <img src={bananaLeafMeal} alt="Brahmin Caterers"></img>
                   </div>
                   <div className="madi_vantalu-card-text">
-                    <div className="madi_vantalu-card-title h2">
+                    <div className="madi_vantalu-card-title h4">
                       Caterer Name
                     </div>
                     <div className="madi_vantalu-card-subtitle">
@@ -691,7 +694,7 @@ const Services = () => {
                         type="primary"
                         className="madi-vantalu-enquiry-button"
                       >
-                        Enquiry Now{" "}
+                        Enquiry Now
                       </Button>
                     </div>
                   </div>
@@ -701,7 +704,7 @@ const Services = () => {
                     <img src={bananaLeafMeal} alt="Brahmin Caterers"></img>
                   </div>
                   <div className="madi_vantalu-card-text">
-                    <div className="madi_vantalu-card-title h2">
+                    <div className="madi_vantalu-card-title h4">
                       Caterer Name
                     </div>
                     <div className="madi_vantalu-card-subtitle">
@@ -720,7 +723,7 @@ const Services = () => {
                         type="primary"
                         className="madi-vantalu-enquiry-button"
                       >
-                        Enquiry Now{" "}
+                        Enquiry Now
                       </Button>
                     </div>
                   </div>

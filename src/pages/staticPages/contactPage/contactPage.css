@@ -8,18 +8,19 @@
 }
 .background-img {
   width: 99.2vw;
+  height: 400px;
 }
 
 .overlay-img {
   position: absolute;
   margin-left: auto;
-  top: 12vh;
+  top: 5vh;
   left: 50vw;
   width: 40vw;
 }
 .contact_us-text {
   position: absolute;
-  top: 23vh;
+  top: 15vh;
   left: 9vw;
   color: var(--neutrals---color-white);
   max-width: 31.042vw;
@@ -37,7 +38,8 @@
 }
 /* form css */
 .contact-form-container {
-  padding-left: 7.813vw;
+  padding-left: 10.813vw;
+  padding-right: 10.813vw;
   height: 54.6vh;
   margin: auto;
   background: var(--neutrals---color-background);
@@ -136,7 +138,7 @@ textarea {
   white-space: nowrap;
 }
 .contact_us-title {
-  padding-left: 7.813vw;
+  padding-left: 10.813vw;
   color: var(--primary-brand---color-primary);
 }
 .saffron-form .ant-form-item-label > label {
@@ -189,6 +191,38 @@ textarea {
 }
 .submit-button {
   background-color: var(--secondary---color-secondary);
+}
+.submit-contact_btn {
+  background-color: var(--secondary---color-secondary) !important;
+}
+.submit-contact_btn:hover,
+.submit-contact_btn:focus {
+  background-color: var(--secondary---color-secondary-light) !important;
+  border-color: var(--secondary---color-secondary-light) !important;
+  color: var(--neutrals---color-white) !important;
+}
+.submit-contact_btn:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border-color: var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
+}
+
+.file-input {
+  height: 40px;
+  width: 32vw;
+  border: 1px solid var(--text---color-text-muted);
+  border-radius: 0 6px 6px 0;
+}
+.subject-input {
+  width: 32.5vw;
+  margin-left: -80px;
+}
+.ant-input.css-dev-only-do-not-override-l9pxc0.ant-input-outlined.message-textarea {
+  max-width: 35vw;
+  min-height: 22vh;
+  max-height: 35vh !important;
+  min-width: none;
 }
 @media (max-width: 768px) {
   .inline-field.ant-form-item {

@@ -1,6 +1,7 @@
 .services-page {
-  padding-left: 7.813vw;
-  padding-right: 7.813vw;
+  padding-left: 16.813vw;
+  padding-right: 16.813vw;
+  margin-bottom: 10vh;
   background-color: var(--backgrounds---color-bg);
 }
 .brahmin_purohits-text {
@@ -16,12 +17,28 @@
   font-weight: 500;
   cursor: pointer;
 }
+.book-purohit-button:hover,
+.book-purohit-button:focus {
+  background-color: var(--neutrals---color-white) !important;
+  border: 1px solid var(--secondary---color-secondary);
+  color: var(--secondary---color-secondary) !important;
+}
+.book-purohit-button:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border: 1px solid var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
+}
 .brahmin_purohits-card-addresses {
   display: flex;
   gap: 1vw;
 }
+.brahmin_purohits-card-description {
+  color: var(--text---color-text-secondary);
+}
 .location_1 {
   background: var(--backgrounds---color-border);
+  color: var(--text---color-text-secondary);
   width: max-content;
   padding: 0.313rem 0.625rem;
 }
@@ -42,9 +59,9 @@
 .brahmin_purohits-card-subtitle {
   display: flex;
   gap: 2.083vw;
+  color: var(--text---color-text-secondary);
 }
-.madi_vantalu-title p,
-.madi_vantalu-view-more a {
+.madi_vantalu-title p {
   margin-top: 12px;
   font-weight: bold;
   text-decoration: none;
@@ -77,6 +94,34 @@
   border: 1px solid var(--primary-brand---color-primary);
   padding: 0.625rem 1.25rem;
 }
+.madi-vantalu-enquiry-button:hover,
+.madi-vantalu-enquiry-button:focus {
+  background-color: var(--neutrals---color-white) !important;
+  border: 1px solid var(--secondary---color-secondary);
+  color: var(--secondary---color-secondary) !important;
+}
+.madi-vantalu-enquiry-button:active {
+  background-color: var(--secondary---color-secondary-dark) !important;
+  border: 1px solid var(--secondary---color-secondary-dark) !important;
+  color: var(--neutrals---color-white) !important;
+  transform: scale(0.95);
+}
 .madi_vantalu-items {
-  gap: 3vw;
+  gap: 5vw;
+  justify-content: center;
+}
+.view-more {
+  display: inline-block;
+  text-decoration: none;
+  color: #e65100;
+  font-weight: 100;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), color 0.35s ease;
+}
+.view-more:hover {
+  transform: translateY(-3px) scale(1.05);
+  color: #ff5722;
+}
+.madi_vantalu-card-title {
+  color: var(--primary-brand---color-primary);
+  font-weight: 500;
 }

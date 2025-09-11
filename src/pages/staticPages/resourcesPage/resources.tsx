@@ -5,6 +5,7 @@ import "./resources.css";
 const Resources = () => {
   return (
     <>
+      <div className="vertical_spacer_small"></div>
       <div className="contact_us-image_container">
         <img
           src={backgroundFrame}

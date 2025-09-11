@@ -3,6 +3,8 @@ import { Form, Input, Button, Radio, Select, Row, Col } from "antd";
 import { Icon } from "@iconify/react";
 import gopuram from "../../../assets/gopuram.png";
 import backgroundFrame from "../../../assets/background_header_frame.png";
+import paypalLogo from "../../../assets/paypal.png";
+import stripeLogo from "../../../assets/Stripe.png";
 import "./DonateNow.css";
 
 const DonateNow: React.FC = () => {
@@ -82,7 +84,10 @@ const DonateNow: React.FC = () => {
                     className="label-firstName"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter First Name" />
+                    <Input
+                      placeholder="Enter First Name"
+                      className="input-firstName"
+                    />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -92,7 +97,10 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-lastName"
                   >
-                    <Input placeholder="Enter Last Name" />
+                    <Input
+                      placeholder="Enter Last Name"
+                      className="input-lastName"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -106,7 +114,7 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-email"
                   >
-                    <Input placeholder="Enter Email" />
+                    <Input placeholder="Enter Email" className="input-email" />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -116,7 +124,10 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-mobile"
                   >
-                    <Input placeholder="Enter Mobile" />
+                    <Input
+                      placeholder="Enter Mobile"
+                      className="input-mobile"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -142,7 +153,10 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-companyName"
                   >
-                    <Input placeholder="Enter Company Name" />
+                    <Input
+                      placeholder="Enter Company Name"
+                      className="input-companyName"
+                    />
                   </Form.Item>
                 </>
               )}
@@ -162,7 +176,10 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-postcode"
                   >
-                    <Input placeholder="Enter Postcode" />
+                    <Input
+                      placeholder="Enter Postcode"
+                      className="input-postcode"
+                    />
                   </Form.Item>
                 </Col>
                 <Col span={8}>
@@ -190,21 +207,30 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-address1"
                   >
-                    <Input />
+                    <Input
+                      placeholder="Enter Address Line 1"
+                      className="input-address1"
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Address Line 2"
                     name="address2"
                     className="label-address2"
                   >
-                    <Input />
+                    <Input
+                      placeholder="Enter Address Line 2"
+                      className="input-address2"
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Address Line 3"
                     name="address3"
                     className="label-address3"
                   >
-                    <Input />
+                    <Input
+                      placeholder="Enter Address Line 3"
+                      className="input-address3"
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Town / City *"
@@ -212,7 +238,10 @@ const DonateNow: React.FC = () => {
                     rules={[{ required: true }]}
                     className="label-city"
                   >
-                    <Input />
+                    <Input
+                      placeholder="Enter Town / City"
+                      className="input-city"
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Country *"
@@ -248,6 +277,7 @@ const DonateNow: React.FC = () => {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Enter amount"
+                    className="input-amountGBP"
                   />
                 </Form.Item>
               )}
@@ -305,7 +335,8 @@ const DonateNow: React.FC = () => {
                     <Input placeholder="Enter Payment Reference" />
                   </Form.Item>
                   {/* Donation Type */}
-                  <Form.Item label="Donation Type" name="donationType">
+                  <Form.Item>
+                    <p className="h4">Donation Type</p>
                     <Radio.Group
                       onChange={(e) => {
                         const value = e.target.value;
@@ -322,19 +353,24 @@ const DonateNow: React.FC = () => {
                       </Radio>
                     </Radio.Group>
                   </Form.Item>
-
-                  <p>Boost your donation by 25% With Gift Aid</p>
                   <p>
-                    Your donation of £100.00 would be worth £125.00 at no extra
-                    cost to you.
+                    We can only claim Gift Aid on donations of your own money.
+                    <br />
+                    Your donation is not eligible for Gift Aid if you received
+                    anything in return for it or raised it from your own
+                    fundraising.
+                  </p>
+                  <p>
+                    <strong className="h4">
+                      Boost your donation by 25% With Gift Aid
+                    </strong>
+                    <br /> Your donation of £100.00 would be worth £125.00 at no
+                    extra cost to you.
                   </p>
 
                   {/* Gift Aid */}
-                  <Form.Item
-                    label="Please Claim Gift Aid on my donation"
-                    name="giftAidClaim"
-                    className="label-giftAidClaim"
-                  >
+                  <Form.Item>
+                    <p className="h4">Gift Aid</p>
                     <Radio.Group disabled={donationType !== "own"}>
                       <Radio value="yes">Yes</Radio>
                       <Radio value="no">No</Radio>
@@ -371,16 +407,23 @@ const DonateNow: React.FC = () => {
                 <p className="h4" style={{ color: "#E65100" }}>
                   Donate with
                 </p>
-                <Button
-                  type="primary"
-                  icon={<Icon icon="logos:paypal" width="3.813vw" />}
-                />
-                <Button
-                  type="default"
-                  icon={<Icon icon="logos:stripe" width="7.813vw" />}
-                />
+                <Button className="paypal-button">
+                  <img
+                    src={paypalLogo}
+                    alt="PayPal Logo"
+                    className="paypal-btn"
+                  />
+                </Button>
+                <Button className="stripe-button">
+                  <img
+                    src={stripeLogo}
+                    alt="Stripe Logo"
+                    className="stripe-btn"
+                  />
+                </Button>
               </div>
             </Form>
+            <div className="vertical_spacer_small"></div>
           </div>
         </div>
       </div>
