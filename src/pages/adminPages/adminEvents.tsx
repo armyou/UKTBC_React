@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import {
   Card,
@@ -8,23 +7,30 @@ import {
   List,
   Modal,
   Form,
-  Upload,
   InputNumber,
   Space,
   Row,
   Col,
+  DatePicker,
+  TimePicker,
 } from "antd";
+
 import {
-  UploadOutlined,
   PlusOutlined,
   MinusCircleOutlined,
+  InboxOutlined,
 } from "@ant-design/icons";
 import { FaRegCalendarAlt, FaRegClock } from "react-icons/fa";
+import { Upload } from "antd";
 
 import banner1 from "../../assets/dummy/events/event1.png";
 import banner2 from "../../assets/dummy/events/event2.png";
 import banner3 from "../../assets/dummy/events/event3.png";
 import "./css/events.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+const { Dragger } = Upload;
 
 const { Search } = Input;
 const { Option } = Select;
@@ -36,6 +42,11 @@ interface Event {
   date: string;
   time: string;
   banner: string;
+  description: string;
+  ticketPrice: number;
+  availableSeats: number;
+  prerequisites: string[];
+  registrationLinks: string[];
 }
 
 const AdminEvents: React.FC = () => {
@@ -44,14 +55,23 @@ const AdminEvents: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
 
+  const navigate = useNavigate();
+
   // Sample events data
-  const [events, setEvents] = useState<Event[]>([
+  // Sample events data
+  const [events] = useState<Event[]>([
     {
       id: 1,
       title: "Yoga & Meditation Retreat",
       date: "2025-09-10",
       time: "10:00 AM - 4:00 PM",
       banner: banner1,
+      description:
+        "A rejuvenating retreat focusing on mindfulness, yoga, and meditation practices for inner peace.",
+      ticketPrice: 50,
+      availableSeats: 100,
+      prerequisites: ["Bring your own yoga mat", "Wear comfortable clothes"],
+      registrationLinks: ["https://example.com/yoga-retreat-register"],
     },
     {
       id: 2,
@@ -59,6 +79,12 @@ const AdminEvents: React.FC = () => {
       date: "2025-09-20",
       time: "6:00 PM - 10:00 PM",
       banner: banner2,
+      description:
+        "An evening of cultural performances, traditional food, and community celebrations.",
+      ticketPrice: 20,
+      availableSeats: 250,
+      prerequisites: ["Entry by valid ticket only"],
+      registrationLinks: ["https://example.com/cultural-night-tickets"],
     },
     {
       id: 3,
@@ -66,6 +92,15 @@ const AdminEvents: React.FC = () => {
       date: "2025-09-25",
       time: "1:00 PM - 5:00 PM",
       banner: banner3,
+      description:
+        "Hands-on workshop for painting and creative expression, guided by expert artists.",
+      ticketPrice: 30,
+      availableSeats: 50,
+      prerequisites: [
+        "No prior experience needed",
+        "Materials will be provided",
+      ],
+      registrationLinks: ["https://example.com/art-workshop-register"],
     },
   ]);
 
@@ -134,6 +169,9 @@ const AdminEvents: React.FC = () => {
         renderItem={(event) => (
           <List.Item>
             <Card
+              onClick={() =>
+                navigate(`/admin/event/${event.id}`, { state: { event } })
+              }
               cover={<img alt={event.title} src={event.banner} />}
               className="event-card"
             >
@@ -171,29 +209,56 @@ const AdminEvents: React.FC = () => {
             <Input placeholder="Event Name" />
           </Form.Item>
 
+          <Form.Item
+            name="banner"
+            valuePropName="fileList"
+            getValueFromEvent={(e) => {
+              if (Array.isArray(e)) {
+                return e;
+              }
+              return e && e.fileList;
+            }}
+            rules={[{ required: true, message: "Please upload banner image" }]}
+          >
+            <Dragger
+              name="file"
+              multiple={false}
+              accept="image/*"
+              beforeUpload={(file) => {
+                const isImage = file.type.startsWith("image/");
+                if (!isImage) {
+                  toast.error("You can only upload image files!");
+                  return Upload.LIST_IGNORE;
+                }
+                return false; // prevent auto-upload, keep file in state
+              }}
+            >
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined color="var(--primary-brand---color-primary) !important" />
+              </p>
+              <p className="ant-upload-text">Click or drag image to upload</p>
+              <p className="ant-upload-hint">
+                Upload an event banner (JPEG/PNG, max size 5MB)
+              </p>
+            </Dragger>
+          </Form.Item>
+
           {/* Date, Time, Banner in a row */}
           <Row gutter={8}>
-            <Col span={8}>
+            <Col span={12}>
               <Form.Item
                 name="date"
-                rules={[{ required: true, message: "Please enter date" }]}
+                rules={[{ required: true, message: "Please select date" }]}
               >
-                <Input type="date" placeholder="Date" />
+                <DatePicker style={{ width: "100%" }} format="YYYY-MM-DD" />
               </Form.Item>
             </Col>
-            <Col span={8}>
+            <Col span={12}>
               <Form.Item
                 name="time"
-                rules={[{ required: true, message: "Please enter time" }]}
+                rules={[{ required: true, message: "Please select time" }]}
               >
-                <Input placeholder="Time" />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item name="banner">
-                <Upload beforeUpload={() => false} maxCount={1}>
-                  <Button icon={<UploadOutlined />}>Banner</Button>
-                </Upload>
+                <TimePicker style={{ width: "100%" }} format="HH:mm" />
               </Form.Item>
             </Col>
           </Row>
@@ -220,7 +285,7 @@ const AdminEvents: React.FC = () => {
                 <InputNumber
                   min={0}
                   style={{ width: "100%" }}
-                  placeholder="Available Seats"
+                  placeholder="Tickets Available"
                 />
               </Form.Item>
             </Col>
@@ -238,8 +303,9 @@ const AdminEvents: React.FC = () => {
                     align="baseline"
                   >
                     <Form.Item
-                      {...field}
-                      name={[field.name]}
+                      key={field.key}
+                      name={field.name}
+                      fieldKey={field.fieldKey}
                       rules={[
                         { required: true, message: "Please enter a point" },
                       ]}
@@ -256,6 +322,46 @@ const AdminEvents: React.FC = () => {
                   icon={<PlusOutlined />}
                 >
                   Add Point
+                </Button>
+              </div>
+            )}
+          </Form.List>
+
+          {/* Registration Details */}
+          <h4>Registration Details</h4>
+          <Form.List name="registrationLinks">
+            {(fields, { add, remove }) => (
+              <div>
+                {fields.map((field) => (
+                  <Space
+                    key={field.key}
+                    style={{ display: "flex", marginBottom: 8 }}
+                    align="baseline"
+                  >
+                    <Form.Item
+                      key={field.key}
+                      name={field.name}
+                      fieldKey={field.fieldKey}
+                      rules={[
+                        { required: true, message: "Please enter a link" },
+                      ]}
+                    >
+                      <Input
+                        addonBefore="https://"
+                        placeholder="Enter URL"
+                        allowClear
+                      />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(field.name)} />
+                  </Space>
+                ))}
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  block
+                  icon={<PlusOutlined />}
+                >
+                  Add Link
                 </Button>
               </div>
             )}

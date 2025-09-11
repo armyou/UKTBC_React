@@ -10,7 +10,7 @@ import {
   Descriptions,
   Grid,
 } from "antd";
-import { FaDownload, FaEye } from "react-icons/fa";
+import { AiOutlineDownload, AiOutlineEye } from "react-icons/ai";
 import "./css/dashboard.css";
 
 // Extend DonateData for admin dashboard records
@@ -137,7 +137,7 @@ const AdminDashboard: React.FC = () => {
             className="action-button"
             type="text"
             size="small"
-            icon={<FaEye />}
+            icon={<AiOutlineEye />}
             onClick={() => {
               setSelectedDonation(record);
               setIsModalVisible(true);
@@ -147,7 +147,7 @@ const AdminDashboard: React.FC = () => {
             className="action-button"
             type="text"
             size="small"
-            icon={<FaDownload />}
+            icon={<AiOutlineDownload />}
             onClick={() => {
               console.log("Download donation:", record);
             }}
@@ -165,7 +165,7 @@ const AdminDashboard: React.FC = () => {
         <Col xs={24} sm={12} md={8}>
           <Card
             title="Total Donations"
-            bordered={false}
+            variant="borderless"
             className="dashboard-card"
           >
             <p className="card-content">₹25,430</p>
@@ -174,14 +174,18 @@ const AdminDashboard: React.FC = () => {
         <Col xs={24} sm={12} md={8}>
           <Card
             title="Total Donors"
-            bordered={false}
+            variant="borderless"
             className="dashboard-card"
           >
             <p className="card-content">320</p>
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8}>
-          <Card title="This Month" bordered={false} className="dashboard-card">
+          <Card
+            title="This Month"
+            variant="borderless"
+            className="dashboard-card"
+          >
             <p className="card-content">₹5,120</p>
           </Card>
         </Col>
@@ -213,7 +217,7 @@ const AdminDashboard: React.FC = () => {
                   </Tag>
                 }
                 actions={[
-                  <FaEye
+                  <AiOutlineEye
                     className="action-button"
                     key="view"
                     onClick={() => {
@@ -221,7 +225,7 @@ const AdminDashboard: React.FC = () => {
                       setIsModalVisible(true);
                     }}
                   />,
-                  <FaDownload
+                  <AiOutlineDownload
                     className="action-button"
                     key="download"
                     onClick={() => {

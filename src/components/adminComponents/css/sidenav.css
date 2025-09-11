@@ -52,7 +52,7 @@
 .admin-nav-item {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: flex-start;
   gap: 0.6vw;
   font-size: 1rem;
   padding: 0.8vh 1vw;
@@ -75,6 +75,24 @@
 .admin-nav-item.active {
   background-color: var(--primary-brand---color-primary);
   color: var(--neutrals---color-white);
+}
+
+/* When side nav is collapsed (only icons visible) */
+.admin-sidebar.collapsed .admin-nav-item {
+  justify-content: center;
+  padding: 0.8vh 0.5vw;
+}
+
+.admin-sidebar.collapsed .nav-icon {
+  margin: 0;
+}
+
+.admin-sidebar.collapsed .profile-header {
+  justify-content: center;
+}
+
+.admin-sidebar.collapsed .profile-icon {
+  margin: 0;
 }
 
 /* mobile responsive */

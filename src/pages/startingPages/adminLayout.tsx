@@ -8,6 +8,12 @@ import ProtectedRoute from "../../components/adminComponents/adminProtectedRoute
 import "./css/adminLayout.css";
 import AdminEvents from "../adminPages/adminEvents";
 import AdminProjects from "../adminPages/adminProjects";
+import AdminProjectDetail from "../../components/adminComponents/adminProjectDetails";
+import AdminEventDetails from "../../components/adminComponents/adminEventDetails";
+import AdminResources from "../adminPages/adminResources";
+import AdminVipravaani from "../adminPages/adminVipravaani";
+import AdminPurohiths from "../adminPages/adminPurohiths";
+import AdminMadiVantalu from "../adminPages/adminMadiVantalu";
 
 const AdminLayout: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(true);
@@ -86,6 +92,54 @@ const AdminLayout: React.FC = () => {
             element={
               <ProtectedRoute>
                 <AdminProjects />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/project/:id"
+            element={
+              <ProtectedRoute>
+                <AdminProjectDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/event/:id"
+            element={
+              <ProtectedRoute>
+                <AdminEventDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/resources"
+            element={
+              <ProtectedRoute>
+                <AdminResources />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vipravaani"
+            element={
+              <ProtectedRoute>
+                <AdminVipravaani />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purohiths"
+            element={
+              <ProtectedRoute>
+                <AdminPurohiths />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/madi-vantalu"
+            element={
+              <ProtectedRoute>
+                <AdminMadiVantalu />
               </ProtectedRoute>
             }
           />

@@ -19,12 +19,38 @@ const Login: React.FC = () => {
 
   return (
     <div className="login-container">
+      {/* Animated Background Elements */}
+      <div className="dharma-background">
+        <div className="om-symbol om-1">ॐ</div>
+        <div className="om-symbol om-2">ॐ</div>
+        <div className="om-symbol om-3">ॐ</div>
+        <div className="lotus-petal petal-1"></div>
+        <div className="lotus-petal petal-2"></div>
+        <div className="lotus-petal petal-3"></div>
+        <div className="lotus-petal petal-4"></div>
+        <div className="lotus-petal petal-5"></div>
+        <div className="lotus-petal petal-6"></div>
+        <div className="floating-dots">
+          <div className="dot dot-1"></div>
+          <div className="dot dot-2"></div>
+          <div className="dot dot-3"></div>
+          <div className="dot dot-4"></div>
+          <div className="dot dot-5"></div>
+          <div className="dot dot-6"></div>
+        </div>
+        <div className="mandala-pattern"></div>
+      </div>
+
       <Card className="login-card col-sm-8 col-lg-5">
+        <div className="login-card-glow"></div>
         <Title level={3} className="login-title">
-          Admin Login
+          <span className="title-om">ॐ</span> Admin Login
         </Title>
         <div className="login-card-content col-sm-12 row">
-          <img src={logo} alt="" className="login-image col-sm-12 col-md-5" />
+          <div className="logo-container col-sm-12 col-md-5">
+            <div className="logo-glow"></div>
+            <img src={logo} alt="" className="login-image" />
+          </div>
           <Form
             name="login"
             onFinish={onFinish}
