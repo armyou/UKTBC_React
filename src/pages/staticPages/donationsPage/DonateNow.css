@@ -108,7 +108,7 @@
   background-color: var(--neutrals---color-white);
   color: var(--primary-brand---color-primary);
   height: 40px;
-  width: 100%;
+  width: 20vw !important;
   border: 1px solid var(--primary-brand---color-primary);
 }
 .find_address-btn:hover,
@@ -126,7 +126,7 @@
   background-color: var(--neutrals---color-white);
   color: var(--primary-brand---color-primary);
   height: 40px;
-  width: 100%;
+  width: 20vw;
   border: 1px solid var(--primary-brand---color-primary);
 }
 .enter_manually-btn:hover,
@@ -241,6 +241,7 @@
   padding: 10px 46px;
   border-radius: 4px 0px 0px 4px;
   height: 40px;
+  width: 14vw;
 }
 .donation-form .label-paymentReference .ant-form-item-label > label {
   background-color: #e65100;
@@ -274,6 +275,19 @@
 }
 .stripe-button {
   width: 0px;
+}
+.input-postcode {
+  width: 28vw;
+}
+.adress_buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-left: 0.5vw;
+  gap: 3vw;
+}
+.find_adress-btn {
+  width: 18vw;
 }
 @media (max-width: 768px) {
   .overlay-img {

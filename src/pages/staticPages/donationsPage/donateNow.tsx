@@ -167,9 +167,9 @@ const DonateNow: React.FC = () => {
                 missing addresses, enter manually.
               </p>
 
-              {/* Postcode / Find Address */}
-              <Row gutter={16}>
-                <Col span={8}>
+              {/* Postcode / Find Address / Enter Manually*/}
+              <Row>
+                <Col>
                   <Form.Item
                     label="Postcode"
                     name="postcode"
@@ -182,20 +182,26 @@ const DonateNow: React.FC = () => {
                     />
                   </Form.Item>
                 </Col>
-                <Col span={8}>
-                  <Button className="find_address-btn" type="primary">
-                    Find Address
-                  </Button>
-                </Col>
-                <Col span={8}>
-                  <Button
-                    className="enter_manually-btn"
-                    type="primary"
-                    onClick={() => setShowManualAddress((prev) => !prev)}
-                  >
-                    {showManualAddress ? "Hide Address" : "Enter Manually"}
-                  </Button>
-                </Col>
+                <div className="adress_buttons row">
+                  <div className="find_adress-btn">
+                    <Col>
+                      <Button className="find_address-btn" type="primary">
+                        Find Address
+                      </Button>
+                    </Col>
+                  </div>
+                  <div className="enter_manually-button">
+                    <Col>
+                      <Button
+                        className="enter_manually-btn"
+                        type="primary"
+                        onClick={() => setShowManualAddress((prev) => !prev)}
+                      >
+                        {showManualAddress ? "Hide Address" : "Enter Manually"}
+                      </Button>
+                    </Col>
+                  </div>
+                </div>
               </Row>
 
               {/* Address fields */}

@@ -1,70 +1,148 @@
 .book-container {
-  background: white; /* ensures background of the flipbook */
+  background: var(--neutrals---color-white);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-  flex: 3; /* 3 parts of the width */
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-/* Center spine shadow to create depth */
-/* .book-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px; 
-  height: 100%;
-  border-radius: 6px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2) 0%,
-     rgba(0, 0, 0, 0.05) 50%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
-  box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.15),
-    inset 2px 0 6px rgba(0, 0, 0, 0.15);
-  z-index: 5;
-  pointer-events: none;
-} */
-
 .page-shadow {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), -3px 0 10px rgba(0, 0, 0, 0.07),
-    3px 0 10px rgba(0, 0, 0, 0.07);
+  padding: 10px; /* little breathing space */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.06),
+    2px 0 8px rgba(0, 0, 0, 0.06);
 }
 .vipravaani-page {
   padding-left: 10vw;
   padding-right: 10vw;
   display: flex;
   flex-direction: row;
-  /* remove huge gap */
   gap: 1rem;
 }
 
-/* Left side PDF previews */
 .pdf-preview-container {
-  width: 180px; /* fixed width for all previews */
+  width: 180px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* small vertical gap between thumbnails */
+  gap: 0.5rem;
   overflow-y: auto;
-  max-height: 90vh; /* scroll if too many PDFs */
+  max-height: 90vh;
   padding: 0.5rem;
 }
 
-/* Each PDF thumbnail */
-.pdf-thumbnail {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.25rem;
+.bookFlipContainer {
+  width: 100%;
+  height: auto; /* Adjust as needed */
+  overflow: auto; /* Enable scrollbars */
+  position: relative;
+  cursor: grab;
+  border-radius: 6px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.06),
+    2px 0 8px rgba(0, 0, 0, 0.06);
+}
+.bookFlipContainer:active {
+  cursor: grabbing;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.06),
+    2px 0 8px rgba(0, 0, 0, 0.06);
+}
+
+.pdf-name-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 10px;
+  padding-right: 20px;
 }
-.bookFlipContainer {
-  width: 75%;
+
+.pdf-name-item {
+  font-size: 16px;
+  color: var(--text---color-text-primary);
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  gap: 1vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.pdf-name-item:hover {
+  background-color: var(--neutrals---color-white);
+  color: var(--secondary---color-secondary-dark);
+  border: 1px solid var(--secondary---color-secondary-dark);
+}
+
+.pdf-name-item.active-pdf {
+  font-weight: bold;
+  color: var(--neutrals---color-white);
+  background-color: var(--secondary---color-secondary-dark);
+  border-radius: 5px;
+  width: 8vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* page nation css*/
+.flip-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.flip-btn {
+  padding: 6px 14px;
+  background: var(--neutrals---color-white);
+  color: var(--primary-brand---color-primary);
+  border: 1px solid var(--primary-brand---color-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.flip-btn:hover {
+  background: var(--neutrals---color-white);
+  border: 1px solid var(--secondary---color-secondary);
+  color: var(--secondary---color-secondary);
+}
+.flip-btn:active {
+  background: var(--secondary---color-secondary-dark);
+  color: var(--neutrals---color-white);
+}
+
+.page-info {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.download-btn {
+  background-color: var(--neutrals---color-white);
+  color: var(--primary-brand---color-primary);
+  border: 1px solid var(--primary-brand---color-primary);
+  margin-top: 10px;
+  padding: 2vh 8.2vw;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.download-btn:hover,
+.download-btn:focus {
+  background-color: var(--neutrals---color-white);
+  color: var(--secondary---color-secondary);
+  border: 1px solid var(--secondary---color-secondary);
+}
+.download-btn:active {
+  background-color: var(--secondary---color-secondary-dark);
+  color: var(--neutrals---color-white);
+}
+.vipravani_download-btn {
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
